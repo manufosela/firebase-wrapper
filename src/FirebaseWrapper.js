@@ -81,6 +81,8 @@ export class FirebaseWrapper extends LitElement {
         composed: true,
         detail: {
           id: this.id,
+          component: this,
+          componentName: this.tagName,
           firebaseLoginbutton: this.firebaseLoginbutton,
           firebaseCrud: this.firebaseCrud,
         },
