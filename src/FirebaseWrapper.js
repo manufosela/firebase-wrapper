@@ -20,9 +20,12 @@ export class FirebaseWrapper extends LitElement {
       domain: { type: String, attribute: 'domain' },
       messagingSenderId: { type: String, attribute: 'messaging-sender-id' },
       appId: { type: String, attribute: 'app-id' },
-      showEmail: { type: Boolean, attribute: 'show-email' },
-      showPhoto: { type: Boolean, attribute: 'show-photo' },
-      showUser: { type: Boolean, attribute: 'show-user' },
+      showEmail: { type: Boolean, attribute: 'show-email', reflect: true },
+      showPhoto: { type: Boolean, attribute: 'show-photo', reflect: true },
+      showUser: { type: Boolean, attribute: 'show-user', reflect: true },
+      firebaseApp: { type: Object },
+      firebaseStorage: { type: Object },
+      userData: { type: Object },
     };
   }
 
@@ -36,6 +39,10 @@ export class FirebaseWrapper extends LitElement {
     this.showEmail = false;
     this.showPhoto = false;
     this.showUser = false;
+
+    this.firebaseApp = null;
+    this.firebaseStorage = null;
+    this.userData = null;
 
     document.addEventListener('wc-ready', this._componentReady.bind(this));
   }
@@ -66,6 +73,9 @@ export class FirebaseWrapper extends LitElement {
 
   _componentReady(e) {
     if (e.detail.id === `firebaseCrud-${this.id}`) {
+      this.firebaseApp = e.detail.firebaseApp;
+      this.firebaseStorage = e.detail.storage;
+      this.userData = e.detail.userData;
       const wrapperReady = new CustomEvent('wc-ready', {
         bubbles: true,
         composed: true,
