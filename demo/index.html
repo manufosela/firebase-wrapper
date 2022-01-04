@@ -29,9 +29,28 @@
             show-photo
           >
           </firebase-wrapper>
+          <div id="message"></div>
         `,
         document.querySelector('#demo')
       );
+
+      function wcReady(e) {
+        const fbwrapper1 = document.querySelector('#fbwrapper1');
+        if (fbwrapper1.id === e.detail.id) {
+          console.log('wcReady', e.detail);
+          document.getElementById(
+            'message'
+          ).innerHTML = `wcReady: ${e.detail.id}`;
+        }
+      }
+
+      document.addEventListener('wc-ready', wcReady);
+      document.addEventListener('firebase-signout', e => {
+        console.log('firebase-logout', e.detail);
+        document.getElementById(
+          'message'
+        ).innerHTML = `firebase-logout: ${e.detail.id}`;
+      });
     </script>
   </body>
 </html>

@@ -65,11 +65,17 @@ export class FirebaseWrapper extends LitElement {
   }
 
   _componentReady(e) {
-    if (e.detail.id === `firebaseLoginbutton-${this.id}`) {
-      console.log('firebaseLoginbutton ready');
-    }
     if (e.detail.id === `firebaseCrud-${this.id}`) {
-      console.log('firebaseCrud ready');
+      const wrapperReady = new CustomEvent('wc-ready', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          id: this.id,
+          firebaseLoginbutton: this.firebaseLoginbutton,
+          firebaseCrud: this.firebaseCrud,
+        },
+      });
+      this.dispatchEvent(wrapperReady);
     }
   }
 
