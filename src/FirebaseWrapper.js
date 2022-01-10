@@ -18,6 +18,7 @@ export class FirebaseWrapper extends LitElement {
       id: { type: String },
       apiKey: { type: String, attribute: 'api-key' },
       domain: { type: String, attribute: 'domain' },
+      zone: { type: String, attribute: 'zone' },
       messagingSenderId: { type: String, attribute: 'messaging-sender-id' },
       appId: { type: String, attribute: 'app-id' },
       showEmail: { type: Boolean, attribute: 'show-email', reflect: true },
@@ -34,6 +35,7 @@ export class FirebaseWrapper extends LitElement {
     this.id = Math.random().toString(36).substring(7);
     this.apiKey = '';
     this.domain = '';
+    this.zone = null;
     this.messagingSenderId = '';
     this.appId = '';
     this.showEmail = false;
@@ -52,6 +54,7 @@ export class FirebaseWrapper extends LitElement {
     this.firebaseLoginbutton.setAttribute('id',`firebaseLoginbutton-${this.id}`);
     this.firebaseLoginbutton.setAttribute('api-key', this.apiKey);
     this.firebaseLoginbutton.setAttribute('domain', this.domain);
+    this.firebaseLoginbutton.setAttribute('zone', this.zone);
     this.firebaseLoginbutton.setAttribute('messaging-sender-id', this.messagingSenderId);
     this.firebaseLoginbutton.setAttribute('app-id', this.appId);
     if (this.showEmail) {
